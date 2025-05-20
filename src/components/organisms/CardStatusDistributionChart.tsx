@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../atoms/Card';
 import Text from '../atoms/Text';
-import { CardStatusDistribution } from '../../types/intex';
+import { CardStatusDistribution } from '../../types/index';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 

@@ -42,16 +42,57 @@ export interface CardStatusDistribution {
   };
 }
 
-// User Information
 export interface UserInfo {
   name: string;
   lastLogin: Date;
 }
 
-// Quick Access Item
 export interface QuickAccessItem {
   id: string;
   title: string;
   icon: React.ReactNode;
   path: string;
+}
+
+export interface MenuItem {
+  id: string;
+  label: string;
+  icon: string;
+  path: string;
+}
+
+// export type CardType = 'Personalized' | 'Instant' | 'Corporate';
+// export type CardStatus = 'Active' | 'Expired' | 'Inactive' | 'Blocked' | 'Lost';
+export type RequestStatus = 'Ready' | 'In Progress' | 'Automatically' | 'Pending';
+
+export interface AnalyticsItem {
+  title: string;
+  value: string;
+  change: string;
+  additionalInfo: string;
+}
+
+export interface MonthlyIssuance {
+  month: string;
+  cardType: CardType;
+  quantity: string;
+  status: string;
+}
+
+// export interface CardRequest {
+//   branch: string;
+//   cardType: CardType;
+//   quantity: string;
+//   status: RequestStatus;
+// }
+
+export interface IncomeData {
+  day: string;
+  value: number;
+}
+
+export interface CardStatusData {
+  status: CardStatus;
+  count: number;
+  percentage: number;
 }

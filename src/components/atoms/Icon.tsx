@@ -5,6 +5,7 @@ interface IconProps {
   size?: 'sm' | 'md' | 'lg';
   color?: string;
   className?: string;
+  name?: string;
 }
 
 const Icon: React.FC<IconProps> = ({
@@ -12,6 +13,7 @@ const Icon: React.FC<IconProps> = ({
   size = 'md',
   color,
   className = '',
+  name = '',
 }) => {
   const sizeClasses = {
     sm: 'w-4 h-4',

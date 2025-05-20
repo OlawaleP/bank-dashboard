@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../atoms/Text';
-import { UserInfo } from '../../types/intex';
+import { UserInfo } from '../../types/index';
 import { format } from 'date-fns';
 
 interface HeaderProps {

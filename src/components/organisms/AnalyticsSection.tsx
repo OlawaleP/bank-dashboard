@@ -1,7 +1,7 @@
 import React from 'react';
 import StatCard from '../molecules/StatCard';
 import Text from '../atoms/Text';
-import { AnalyticsData } from '../../types/intex';
+import { AnalyticsData } from '../../types/index';
 
 interface AnalyticsSectionProps {
   data: AnalyticsData;

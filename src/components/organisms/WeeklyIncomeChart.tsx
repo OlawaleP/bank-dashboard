@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../atoms/Card';
 import Text from '../atoms/Text';
-import { DailyIncomeData } from '../../types/intex';
+import { DailyIncomeData } from '../../types/index';
 import {
   Chart as ChartJS,
   CategoryScale,
