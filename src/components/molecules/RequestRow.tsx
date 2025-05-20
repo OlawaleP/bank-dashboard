@@ -2,7 +2,7 @@ import React from 'react';
 import Badge from '../atoms/Badge';
 import Button from '../atoms/Button';
 import Text from '../atoms/Text';
-import { CardRequest } from '../../types';
+import { CardRequest } from '../../types/intex';
 
 interface RequestRowProps {
   request: CardRequest;
