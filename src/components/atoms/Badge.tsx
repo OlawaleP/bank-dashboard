@@ -24,7 +24,7 @@ const Badge: React.FC<BadgeProps> = ({
   };
 
   const sizeClasses = {
-    sm: 'text-xs px-2 py-0.5',
+    sm: 'text-xs px-2 py-1',
     md: 'text-sm px-2.5 py-0.5',
   };
 

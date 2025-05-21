@@ -13,6 +13,7 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import chartIcon from '../../assets/icons/chartIcon.svg';
 
 ChartJS.register(
   CategoryScale,
@@ -80,7 +81,7 @@ const WeeklyIncomeChart: React.FC<WeeklyIncomeChartProps> = ({
         label: 'Income',
         data: data.map((item) => item.value),
         borderColor: '#4CAF50',
-        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+        backgroundColor: '#FFFFFF',
         borderWidth: 2,
       },
     ],
@@ -89,14 +90,10 @@ const WeeklyIncomeChart: React.FC<WeeklyIncomeChartProps> = ({
   return (
     <Card className={`${className}`}>
       <div className="flex items-center justify-between mb-4">
-        <Text as="h2" size="lg" weight="semibold">
+        <Text as="h2" size="lg" color='text-textColor-100'>
           This Week's Income
         </Text>
-        <button className="text-gray-400 hover:text-gray-600">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 110-2h4a1 1 0 011 1v4a1 1 0 11-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 112 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 110 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 110-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
-          </svg>
-        </button>
+        <img src={chartIcon} alt="MasterCard" className="text-gray-400 hover:text-gray-600 w-4 h-4"  />
       </div>
       
       <div className="h-64">

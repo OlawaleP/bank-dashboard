@@ -26,24 +26,25 @@ const RequestRow: React.FC<RequestRowProps> = ({ request, onViewDetails }) => {
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-50">
       <td className="py-3 px-4">
-        <Text>{request.branch}</Text>
+        <Text size='xs'>{request.branch}</Text>
       </td>
       <td className="py-3 px-4">
-        <Text>{request.cardType}</Text>
+        <Text size='xs'>{request.cardType}</Text>
       </td>
       <td className="py-3 px-4 text-center">
-        <Text>{request.quantity}</Text>
+        <Text size='xs'>{request.quantity}</Text>
       </td>
       <td className="py-3 px-4">
         <Badge 
+        size='sm'
           label={request.status} 
           variant={getStatusBadgeVariant(request.status)}
         />
       </td>
-      <td className="py-3 px-4 text-right">
+      <td className="py-3 px-4 text-center text-chart1">
         <Button 
-          variant="outline" 
-          size="sm" 
+          variant="ghost" 
+          size="xs" 
           onClick={() => onViewDetails(request.id)}
         >
           View

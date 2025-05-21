@@ -12,6 +12,7 @@ import {
   Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import chartIcon from '../../assets/icons/chartIcon.svg';
 
 ChartJS.register(
   CategoryScale,
@@ -31,6 +32,26 @@ const MonthlyIssuanceChart: React.FC<MonthlyIssuanceChartProps> = ({
   data,
   className = '',
 }) => {
+  const getLastSixMonths = () => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+
+    const last6MonthsIndices = [];
+    for (let i = 5; i >= 0; i--) {
+      const monthIndex = (currentMonth - i + 12) % 12;
+      last6MonthsIndices.push(months[monthIndex]);
+    }
+    return last6MonthsIndices;
+  };
+
+  const lastSixMonthNames = getLastSixMonths();
+
+  const filteredData = lastSixMonthNames.map(monthName => {
+    const monthData = data.find(item => item.month === monthName);
+    return monthData || { month: monthName, personalized: 0, instant: 0 };
+  });
+
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -38,6 +59,16 @@ const MonthlyIssuanceChart: React.FC<MonthlyIssuanceChartProps> = ({
       legend: {
         display: true,
         position: 'bottom' as const,
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle', 
+          padding: 24,
+          boxWidth: 8,
+          boxHeight: 8, 
+          font: {
+            size: 12 
+          }
+        }
       },
       tooltip: {
         mode: 'index' as const,
@@ -52,6 +83,7 @@ const MonthlyIssuanceChart: React.FC<MonthlyIssuanceChartProps> = ({
       },
       y: {
         beginAtZero: true,
+        stacked: true,
         ticks: {
           stepSize: 20,
         },
@@ -60,21 +92,33 @@ const MonthlyIssuanceChart: React.FC<MonthlyIssuanceChartProps> = ({
   };
 
   const chartData = {
-    labels: data.map((item) => item.month),
+    labels: filteredData.map((item) => item.month),
     datasets: [
       {
         label: 'Personalized',
-        data: data.map((item) => item.personalized),
-        backgroundColor: '#0F3775',
-        borderRadius: 4,
-        barThickness: 12,
+        data: filteredData.map((item) => item.personalized),
+        backgroundColor: '#014DAF',
+        borderRadius: {
+          topLeft: 0,
+          topRight: 0,
+          bottomLeft: 4,
+          bottomRight: 4,
+        },
+        barThickness: 40,
+        stack: 'Stack 0',
       },
       {
         label: 'Instant',
-        data: data.map((item) => item.instant),
-        backgroundColor: '#E2E8F0',
-        borderRadius: 4,
-        barThickness: 12,
+        data: filteredData.map((item) => item.instant),
+        backgroundColor: '#CCE2FF',
+        borderRadius: {
+          topLeft: 4,
+          topRight: 4,
+          bottomLeft: 0,
+          bottomRight: 0,
+        },
+        barThickness: 40,
+        stack: 'Stack 0',
       },
     ],
   };
@@ -82,17 +126,14 @@ const MonthlyIssuanceChart: React.FC<MonthlyIssuanceChartProps> = ({
   return (
     <Card className={`${className}`}>
       <div className="flex items-center justify-between mb-4">
-        <Text as="h2" size="lg" weight="semibold">
+        <Text as="h2" size="lg" color='text-textColor-100'>
           Monthly Issuance
         </Text>
-        <button className="text-gray-400 hover:text-gray-600">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 110-2h4a1 1 0 011 1v4a1 1 0 11-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 112 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 110 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 110-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
-          </svg>
-        </button>
+        <img src={chartIcon} alt="MasterCard" className="text-gray-400 hover:text-gray-600 w-4 h-4" />
       </div>
-      
-      <div className="h-64">
+
+      <div className="h-64 relative">
+        <div className="w-full h-[1px] bg-chart3 absolute bottom-8 mb-1" />
         <Bar options={chartOptions} data={chartData} />
       </div>
     </Card>

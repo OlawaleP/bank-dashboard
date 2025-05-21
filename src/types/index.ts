@@ -61,8 +61,6 @@ export interface MenuItem {
   path: string;
 }
 
-// export type CardType = 'Personalized' | 'Instant' | 'Corporate';
-// export type CardStatus = 'Active' | 'Expired' | 'Inactive' | 'Blocked' | 'Lost';
 export type RequestStatus = 'Ready' | 'In Progress' | 'Automatically' | 'Pending';
 
 export interface AnalyticsItem {
@@ -78,13 +76,6 @@ export interface MonthlyIssuance {
   quantity: string;
   status: string;
 }
-
-// export interface CardRequest {
-//   branch: string;
-//   cardType: CardType;
-//   quantity: string;
-//   status: RequestStatus;
-// }
 
 export interface IncomeData {
   day: string;

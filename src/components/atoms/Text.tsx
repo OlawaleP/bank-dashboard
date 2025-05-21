@@ -3,8 +3,8 @@ import React from 'react';
 interface TextProps {
   children: React.ReactNode;
   as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
+  size?: 'xx' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+  weight?: 'thin' | 'normal' | 'medium' | 'semibold' | 'bold';
   color?: string;
   className?: string;
 }
@@ -18,6 +18,7 @@ const Text: React.FC<TextProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
+    xx: 'text-[8.5px]',
     xs: 'text-xs',
     sm: 'text-sm',
     md: 'text-base',
@@ -28,6 +29,7 @@ const Text: React.FC<TextProps> = ({
   };
 
   const weightClasses = {
+    thin: 'font-thin',
     normal: 'font-normal',
     medium: 'font-medium',
     semibold: 'font-semibold',
