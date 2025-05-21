@@ -85,7 +85,7 @@ const CardStatusDistributionChart: React.FC<CardStatusDistributionChartProps> = 
                   {label}
                 </Text>
                 <Text size="xs" className="text-gray-500">
-                  {values[index].toLocaleString()} ({percentage}%)
+                  {values[index].toLocaleString()}
                 </Text>
               </div>
             </div>
