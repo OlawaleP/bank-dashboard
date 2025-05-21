@@ -117,7 +117,7 @@ const CardStatusDistributionChart: React.FC<CardStatusDistributionChartProps> = 
   return (
     <Card className={`p-4 ${className}`}>
       <div className="flex justify-between items-center mb-4">
-        <Text size="lg" className="font-semibold text-gray-800">
+        <Text as="h2" size="lg" color='text-textColor-100'>
           Card Status Distribution
         </Text>
       </div>
