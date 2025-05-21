@@ -8,17 +8,17 @@ import Card from '../atoms/Card';
 import Text from '../atoms/Text';
 import RequestRow from '../molecules/RequestRow';
 import MonthlyIssuanceChart from '../organisms/MonthlyInsurranceChart';
-import { CardRequest, CardStatusDistribution, UserInfo } from '../../types';
 import HeadSection from '../organisms/HeadSection';
 import masterCard from '../../assets/icons/masterCard.svg';
 import instantCard from '../../assets/icons/instantCard.svg';
 import personalizedCard from '../../assets/icons/personalized.svg';
 import reviewCard from '../../assets/icons/reviewCard.svg';
 import chartIcon from '../../assets/icons/chartIcon.svg'
+import { analyticsData, monthlyIssuanceData, recentRequests, sampleCardStatusData, user, weeklyIncomeData } from '../../utils/data';
 
 const Dashboard: React.FC = () => {
-  // Quick access data
-  const quickAccessItems = [
+
+ const quickAccessItems = [
     { icon: <img src={masterCard} alt="MasterCard" />, 
       title: 'Manage a Card', 
       link: '/manage-card' },
@@ -32,69 +32,9 @@ const Dashboard: React.FC = () => {
       title: 'Review Card Requests', 
       link: '/review-requests' },
   ];
-  
-    const user: UserInfo = {
-      name: 'Sarah Johnson',
-      lastLogin: new Date(2025, 4, 19, 14, 30, 0),
-    };
-
-  const analyticsData = {
-      totalActiveCards: 20000,
-      activeCardsGrowth: 20,
-      totalPersonalizedCards: 20,
-      personalizedCardsGrowth: 20,
-      todayRevenue: 20000000000,
-      revenueGrowth: 20,
-      pendingRequests: 20,
-  }
-
-  const monthlyIssuanceData = [
-  { month: 'Jan', personalized: 20, instant: 50 },
-  { month: 'Feb', personalized: 10, instant: 70 },
-  { month: 'Mar', personalized: 10, instant: 10 },
-  { month: 'Apr', personalized: 10, instant: 10 },
-  { month: 'May', personalized: 20, instant: 40 },
-  { month: 'Jun', personalized: 20, instant: 70 },
-  { month: 'Jul', personalized: 20, instant: 80 },
-  { month: 'Aug', personalized: 10, instant: 60 },
-  { month: 'Sep', personalized: 20, instant: 80 },
-  { month: 'Oct', personalized: 30, instant: 20 },
-  { month: 'Nov', personalized: 20, instant: 20 },
-  { month: 'Dec', personalized: 70, instant: 40 },
-];
-
-const weeklyIncomeData = [
-  { day: 'Mon', value: 80 },
-  { day: 'Tues', value: 30 },
-  { day: 'Wed', value: 40 },
-  { day: 'Thurs', value: 30 },
-  { day: 'Fri', value: 20 },
-  { day: 'Sat', value: 70 },
-  { day: 'Sun', value: 40 },
-];
-
-  // Card requests data
-const recentRequests: CardRequest[] = [
-  { id: '1', branch: 'Corporate', cardType: 'Instant', quantity: 10, status: 'Ready' },
-  { id: '2', branch: 'Corporate', cardType: 'Personalized', quantity: 10, status: 'In Progress' },
-  { id: '3', branch: 'Corporate', cardType: 'Personalized', quantity: 10, status: 'Acknowledged' },
-  { id: '4', branch: 'Corporate', cardType: 'Instant', quantity: 10, status: 'Pending' },
-];
-
-const sampleCardStatusData: CardStatusDistribution = {
-  totalCards: 1200,
-  statuses: {
-    active: 650,
-    expired: 200,
-    inactive: 150,
-    blocked: 100,
-    lost: 100,
-  },
-};
 
   return (
     <DashboardLayout>
-      {/* Quick Access Section */}
       <HeadSection user={user} />
       <section className="mb-2 bg-white p-4 rounded-[10px]">
         <Text as="h2" className="text-lg font-medium text-textColor-100 mb-4">Your Quick Access</Text>
@@ -104,13 +44,11 @@ const sampleCardStatusData: CardStatusDistribution = {
               key={item.title}
               icon={item.icon}
               title={item.title}
-              // link={item.link}
             />
           ))}
         </div>
       </section>
 
-      {/* Analytics Section */}
       <AnalyticsSection data={analyticsData} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 mt-6">
 

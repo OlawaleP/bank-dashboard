@@ -13,6 +13,15 @@ interface AnalyticsSectionProps {
   className?: string;
 }
 
+// Enhanced StatCard component with hover effects
+const HoverableStatCard: React.FC<any> = (props) => {
+  return (
+    <div className="transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg rounded-lg cursor-pointer">
+      <StatCard {...props} />
+    </div>
+  );
+};
+
 const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({
   data,
   className = '',
@@ -23,7 +32,7 @@ const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({
         Analytics
       </Text>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
+        <HoverableStatCard
           title="Total Active Cards"
           value={data.totalActiveCards.toLocaleString()}
           icon={active}
@@ -34,7 +43,7 @@ const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({
           }}
         />
         
-        <StatCard
+        <HoverableStatCard
           title="Total Personalized Cards"
           value={data.totalPersonalizedCards.toLocaleString()}
           icon={nonActive}
@@ -45,7 +54,7 @@ const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({
           }}
         />
         
-        <StatCard
+        <HoverableStatCard
           title="Today's Revenue"
           value={formatCurrency(data.todayRevenue)}
           icon={revenue}
@@ -56,7 +65,7 @@ const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({
           }}
         />
         
-        <StatCard
+        <HoverableStatCard
           title="Pending Requests"
           value={data.pendingRequests}
           icon={pending}

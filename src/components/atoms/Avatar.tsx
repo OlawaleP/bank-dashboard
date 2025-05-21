@@ -1,9 +1,13 @@
 import React from 'react';
+import { user } from '../../utils/data';
 
 interface AvatarProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
+
+
+const firstInitial = user?.firstName?.charAt(0)?.toUpperCase() || '';
 
 export const Avatar: React.FC<AvatarProps> = ({ 
   size = 'md', 
@@ -17,7 +21,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={`rounded-full bg-primary-light text-white flex items-center justify-center ${sizeClasses[size]} ${className}`}>
-      <span className="font-medium text-sm">SJ</span>
+      <span className="font-medium text-sm">{firstInitial}</span>
     </div>
   );
 };

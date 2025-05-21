@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../atoms/Icon'; // Import your existing Icon component
+import Icon from '../atoms/Icon'; 
 import { HomeIcon } from '../atoms/icons/HomeIcon';
 
 interface NavItemProps {
@@ -15,12 +15,10 @@ export const NavItem: React.FC<NavItemProps> = ({
   isActive = false, 
   onClick 
 }) => {
-  // Function to get the right icon component based on name
   const getIconComponent = () => {
     switch (iconName) {
       case 'home':
         return <HomeIcon />;
-      // Add other icon cases as needed
       default:
         return null;
     }

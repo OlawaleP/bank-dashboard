@@ -1,3 +1,4 @@
+// Sidebar.tsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Text from '../atoms/Text';
@@ -10,12 +11,14 @@ interface NavItemProps {
   label: string;
   to: string;
   active?: boolean;
+  onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ icon, label, to, active }) => {
+const NavItem: React.FC<NavItemProps> = ({ icon, label, to, active, onClick }) => {
   return (
     <Link
       to={to}
+      onClick={onClick}
       className={`flex items-center px-4 py-3 rounded-md transition-colors group ${active ? 'bg-sideSelect' : 'hover:bg-sideSelect'
         }`}
     >
@@ -37,10 +40,11 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, to, active }) => {
 };
 
 interface SidebarProps {
-  logo?: string;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = () => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
   const location = useLocation();
   const path = location.pathname;
 
@@ -60,9 +64,26 @@ const Sidebar: React.FC<SidebarProps> = () => {
     { icon: 'account', label: 'Account', to: '/account' },
   ];
 
+  const handleLinkClick = () => {
+    if (onClose && window.innerWidth < 1024) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="h-screen w-56 bg-sidebar flex flex-col">
-      <Link to="/" className="p-4 flex items-center">
+    <div 
+      className={`fixed z-30 h-screen bg-sidebar flex flex-col transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      } w-56`}
+    >
+      <button 
+        className="absolute top-4 right-4 text-white lg:hidden"
+        onClick={onClose}
+      >
+        <Icon name="close" className="w-5 h-5" />
+      </button>
+      
+      <Link to="/" className="p-4 flex items-center" onClick={handleLinkClick}>
         <img src={logo} alt="LAPO" className="h-10" />
       </Link>
 
@@ -73,6 +94,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
           label="Dashboard"
           to="/"
           active={path === '/'}
+          onClick={handleLinkClick}
         />
 
         <div className="pl-6 py-2">
@@ -86,6 +108,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             label={item.label}
             to={item.to}
             active={path === item.to}
+            onClick={handleLinkClick}
           />
         ))}
       </div>
@@ -94,6 +117,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
         <Link
           to="/logout"
           className="flex items-center px-4 py-2 text-gray-300 hover:text-white transition-colors"
+          onClick={handleLinkClick}
         >
           <Icon name="logout" className="w-[10.66px] h-[12px]" />
           <Text className="ml-3" size='xs'>Logout</Text>

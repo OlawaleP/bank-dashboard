@@ -3,7 +3,8 @@ import { Avatar } from '../atoms/Avatar';
 import { formatDistanceToNow } from 'date-fns';
 
 interface UserInfo {
-  name: string;
+  firstName: string;
+  lastName: string;
   lastLogin: Date;
 }
 
@@ -32,7 +33,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <div className="flex items-center mb-4">
             <Avatar size="md" className="mr-3" />
             <div>
-              <p className="font-medium text-gray-800">{user.name}</p>
+              <p className="font-medium text-gray-800">{user.firstName}</p>
               <p className="text-xs text-gray-500">Last login: {lastLoginFormatted}</p>
             </div>
           </div>

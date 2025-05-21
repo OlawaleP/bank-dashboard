@@ -43,7 +43,8 @@ export interface CardStatusDistribution {
 }
 
 export interface UserInfo {
-  name: string;
+  firstName: string;
+  lastName: string;
   lastLogin: Date;
 }
 
