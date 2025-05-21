@@ -73,7 +73,6 @@ const CardStatusDistributionChart: React.FC<CardStatusDistributionChartProps> = 
     return (
       <div className={`grid ${isMobile ? 'grid-cols-2 gap-2' : 'grid-cols-5 gap-4'} mt-4`}>
         {labels.map((label, index) => {
-          const percentage = Math.round((values[index] / data.totalCards) * 100);
           return (
             <div key={index} className="flex items-center">
               <div 
@@ -83,9 +82,6 @@ const CardStatusDistributionChart: React.FC<CardStatusDistributionChartProps> = 
               <div className="flex flex-col">
                 <Text size="sm" className="font-medium text-gray-700">
                   {label}
-                </Text>
-                <Text size="xs" className="text-gray-500">
-                  {values[index].toLocaleString()}
                 </Text>
               </div>
             </div>
